@@ -35,9 +35,9 @@ apk add "lua${LUA_MAJOR_MINOR}"
 ln --symbolic "/usr/bin/lua${LUA_MAJOR_MINOR}"  /usr/local/bin/lua
 ln --symbolic "/usr/bin/luac${LUA_MAJOR_MINOR}" /usr/local/bin/luac
 
-# Read by check_version.sh, and by the install.sh of images built on this one,
-# so both state the version this image actually holds rather than one written
-# down when someone last edited them. The interpreter is asked rather than the
+# Recorded in /versions.json and read by the install.sh of images built on
+# this one, so both state the version this image actually holds rather than
+# one written down when someone last edited them. The interpreter is asked rather than the
 # package index, so a version recorded here is one the image can run.
 readonly LUA_VERSION=$(lua -v | sed --quiet 's/^Lua \([0-9][0-9.]*\).*/\1/p')
 cat > /versions.json <<EOF
