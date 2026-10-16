@@ -40,6 +40,14 @@ ln --symbolic "/usr/bin/luac${LUA_MAJOR_MINOR}" /usr/local/bin/luac
 # down when someone last edited them. The interpreter is asked rather than the
 # package index, so a version recorded here is one the image can run.
 readonly LUA_VERSION=$(lua -v | sed --quiet 's/^Lua \([0-9][0-9.]*\).*/\1/p')
-echo "{\"lua\":\"${LUA_VERSION}\",\"lua_major_minor\":\"${LUA_MAJOR_MINOR}\"}" > /versions.json
+cat > /versions.json <<EOF
+{
+  "language": {
+    "name": "Lua",
+    "version": "${LUA_VERSION}"
+  },
+  "test_frameworks": []
+}
+EOF
 
 rm -rf /var/cache/apk/*
